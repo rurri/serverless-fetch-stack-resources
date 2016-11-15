@@ -1,5 +1,7 @@
 A serverless framework plugin so that your functions know how to use resources created by cloudformation.
 
+[![Build Status](https://travis-ci.org/rurri/serverless-fetch-stack-resources.svg?branch=master)](https://travis-ci.org/rurri/serverless-fetch-stack-resources)
+
 ## Why?
 
 You have a CloudFormation template all set, and you are writing your functions. Now you are ready to use the
