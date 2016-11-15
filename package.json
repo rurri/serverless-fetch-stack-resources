@@ -4,12 +4,23 @@
   "description": "Creates or modifies a file prior to function deploy which contains all cloud formation resources and their instance information for this stack.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/plugin-test.js",
+    "lint": "eslint .eslintrc.js *.js --ignore-pattern '!.eslintrc.js'"
   },
   "author": "Jason Chambers",
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.4.6",
     "lodash": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.10.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6"
   }
 }

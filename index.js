@@ -3,9 +3,10 @@
 const Promise = require('bluebird');
 const _ = require('lodash');
 const fs = require('fs');
+
 const DEFAULT_FILENAME = '.cfResources';
 
-class ServerlessResourcesEnv {
+class ServerlessFetchStackResources {
   constructor(serverless, options) {
     this.serverless = serverless;
     this.options = options;
@@ -15,15 +16,17 @@ class ServerlessResourcesEnv {
       'before:deploy:function:deploy': this.createCFFile.bind(this),
       'before:deploy:createDeploymentArtifacts': this.createCFFile.bind(this),
     };
+
+    const awsProvider = this.serverless.getProvider('aws');
+    this.cloudFormation = new awsProvider.sdk.CloudFormation();
+    this.fs = fs;
   }
 
   createCFFile() {
-    const awsProvider = this.serverless.getProvider('aws');
     const stackName = this.getStackName();
-    const cloudFormation = new awsProvider.sdk.CloudFormation();
     this.serverless.cli.log(`[serverless-resources-env] Looking up resources for CF Named: ${stackName}`);
-    return Promise.promisify(cloudFormation.describeStackResources.bind(cloudFormation))({
-      StackName: stackName
+    return Promise.promisify(this.cloudFormation.describeStackResources.bind(this.cloudFormation))({
+      StackName: stackName,
     }).then((result) => {
       const fileName =
           this.serverless.service.custom && this.serverless.service.custom['resource-output-file'] ?
@@ -37,8 +40,8 @@ class ServerlessResourcesEnv {
         all[item.LogicalResourceId] = item.PhysicalResourceId;
         return all;
       }, {});
-      return Promise.promisify(fs.writeFile)(fullFileName, JSON.stringify(data));
-    })
+      return Promise.promisify(this.fs.writeFile)(fullFileName, JSON.stringify(data));
+    });
   }
 
   getStage() {
@@ -58,4 +61,4 @@ class ServerlessResourcesEnv {
   }
 }
 
-module.exports = ServerlessResourcesEnv;
+module.exports = ServerlessFetchStackResources;
