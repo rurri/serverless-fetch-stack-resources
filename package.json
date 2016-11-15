@@ -1,0 +1,15 @@
+{
+  "name": "serverless-fetch-stack-resources",
+  "version": "0.1.0",
+  "description": "Creates or modifies a file prior to function deploy which contains all cloud formation resources and their instance information for this stack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Chambers",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "lodash": "^4.17.1"
+  }
+}
