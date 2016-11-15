@@ -12,11 +12,12 @@ class ServerlessResourcesEnv {
     this.provider = 'aws';
 
     this.hooks = {
-      'before:deploy:function:deploy': this.beforeDeployFunctions.bind(this),
+      'before:deploy:function:deploy': this.createCFFile.bind(this),
+      'before:deploy:createDeploymentArtifacts': this.createCFFile.bind(this),
     };
   }
 
-  beforeDeployFunctions() {
+  createCFFile() {
     const awsProvider = this.serverless.getProvider('aws');
     const stackName = this.getStackName();
     const cloudFormation = new awsProvider.sdk.CloudFormation();
