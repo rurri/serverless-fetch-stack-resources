@@ -2,6 +2,13 @@ A serverless framework plugin so that your functions know how to use resources c
 
 [![Build Status](https://travis-ci.org/rurri/serverless-fetch-stack-resources.svg?branch=master)](https://travis-ci.org/rurri/serverless-fetch-stack-resources)
 
+## Deprecated
+
+No sooner did I finish this module than did AWS announce [Lambda environment variable support](https://aws.amazon.com/about-aws/whats-new/2016/11/aws-lambda-supports-environment-variables/), making things a lot easier, and almost immediately deprecating this plug-in.
+
+Try this one instead! serverless-resources-env Available as [npm module](https://www.npmjs.com/package/serverless-resources-env), and from [Github](https://github.com/rurri/serverless-resources-env)
+
+
 ## Why?
 
 You have a CloudFormation template all set, and you are writing your functions. Now you are ready to use the

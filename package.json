@@ -1,6 +1,6 @@
 {
   "name": "serverless-fetch-stack-resources",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Creates or modifies a file prior to function deploy which contains all cloud formation resources and their instance information for this stack.",
   "main": "index.js",
   "scripts": {
